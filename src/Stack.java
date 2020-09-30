@@ -1,40 +1,37 @@
 public class Stack<T> {
 	
-	private class Node {
+	private class Vector {
 		
-		T nodeData;
-		Node next;
-		public Node() {
-			this.nodeData = null;
+		T VectorData;
+		Vector next;
+		public Vector() {
+			this.VectorData = null;
 			this.next = null;
 		}
 		
-		public Node(T data, Node next) {
-			this.nodeData = data;
+		public Vector(T data, Vector next) {
+			this.VectorData = data;
 			this.next = next;
 		}
 		
 	}
 
 	
-	private Node first;
-	
-	
-
+	private Vector first;
 	public Stack(){
-		this.first = new Node();
+		this.first = new Vector();
 	}
 	
 	public boolean isEmpty() {
-		if (first.nodeData == null) {
+		if (first.VectorData == null) {
 			return true;
 		}
 		return false;
 	}
 	
 	public void push(T data) {
-		Node newnode = new Node(data, first);
-		first = newnode;
+		Vector newVector = new Vector(data, first);
+		first = newVector;
 	}
 	
 	public T pop() {
@@ -42,26 +39,26 @@ public class Stack<T> {
 			return null;
 		}
 		else{
-			T storage = first.nodeData;
+			T storage = first.VectorData;
 			first = first.next;
 			return storage;
 		}
 	}
 	
 	public T peek() {
-		return first.nodeData;
+		return first.VectorData;
 	}
 	
-	// Searches through the nodes and returns how far away it is from the top. -1 if not found, 0 if at top.
+	// Searches through the Vectors and returns how far away it is from the top. -1 if not found, 0 if at top.
 	public int search(T find) {
-		Node currentNode = first;
+		Vector currentVector = first;
 		int counter = 0;
-		while (currentNode.next != null) {
-			if(currentNode.nodeData == find) {
+		while (currentVector.next != null) {
+			if(currentVector.VectorData == find) {
 				return counter;
 			}
 			counter++;
-			currentNode = currentNode.next;
+			currentVector = currentVector.next;
 		}
 		return -1;
 	}
