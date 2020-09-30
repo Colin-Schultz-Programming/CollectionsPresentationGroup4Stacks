@@ -1,20 +1,40 @@
-import java.util.LinkedList;
-
 public class Stack<T> {
-	private LinkedList<T> stack= new LinkedList<T>();
+	
+	private class Node {
+		
+		T nodeData;
+		Node next;
+		public Node() {
+			this.nodeData = null;
+			this.next = null;
+		}
+		
+		public Node(T data, Node next) {
+			this.nodeData = data;
+			this.next = next;
+		}
+		
+	}
+
+	
+	private Node first;
 	
 	
 
 	public Stack(){
-		
+		this.first = new Node();
 	}
 	
 	public boolean isEmpty() {
-		return (stack.isEmpty());
+		if (first.nodeData == null) {
+			return true;
+		}
+		return false;
 	}
 	
 	public void push(T data) {
-		stack.add(0, data);
+		Node newnode = new Node(data, first);
+		first = newnode;
 	}
 	
 	public T pop() {
@@ -22,14 +42,14 @@ public class Stack<T> {
 			return null;
 		}
 		else{
-			T storage = stack.get(0);
-			stack.remove(0);
+			T storage = first.nodeData;
+			first = first.next;
 			return storage;
 		}
 	}
 	
 	public T peek() {
-		return stack.get(0);
+		return first.nodeData;
 	}
 
 }
