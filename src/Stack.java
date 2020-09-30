@@ -51,5 +51,19 @@ public class Stack<T> {
 	public T peek() {
 		return first.nodeData;
 	}
+	
+	// Searches through the nodes and returns how far away it is from the top. -1 if not found, 0 if at top.
+	public int search(T find) {
+		Node currentNode = first;
+		int counter = 0;
+		while (currentNode.next != null) {
+			if(currentNode.nodeData == find) {
+				return counter;
+			}
+			counter++;
+			currentNode = currentNode.next;
+		}
+		return -1;
+	}
 
 }
